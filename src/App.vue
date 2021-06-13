@@ -4,7 +4,6 @@
       <b-navbar-brand :to="{ name: 'main' }">Superliga Vue</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
@@ -17,7 +16,7 @@
             User
           </template>
           <b-dropdown-item href="#">Favorites</b-dropdown-item>
-          <b-dropdown-item href="#">Log Out</b-dropdown-item>
+          <b-dropdown-item v-on:click="Logout" href="#">Log Out</b-dropdown-item>
         </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -32,8 +31,8 @@ export default {
   methods: {
     Logout() {
       this.$root.store.logout();
+      this.axios.defaults.withCredentials = false; //remove cockie after logout
       this.$root.toast("Logout", "User logged out successfully", "success");
-
       this.$router.push("/").catch(() => {
         this.$forceUpdate();
       });

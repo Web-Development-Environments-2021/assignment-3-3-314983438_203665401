@@ -182,7 +182,7 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://test-for-3-2.herokuapp.com/user/Register",
+          "http://localhost:3000/Register",
           {
             username: this.form.username,
             password: this.form.password
@@ -193,6 +193,7 @@ export default {
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
+        //this.$root.toast(err);
       }
     },
     onRegister() {

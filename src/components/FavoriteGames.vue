@@ -2,12 +2,15 @@
   <div>
     <GamePreview
       v-for="g in games"
-      :id="g.id" 
-      :hostTeam="g.hostTeam" 
-      :guestTeam="g.guestTeam" 
-      :date="g.date" 
-      :hour="g.hour" 
-      :key="g.id"></GamePreview>
+      :game_id="g[0].game_id" 
+      :date="g[0].date" 
+      :homeTeamId="g[0].homeTeamId" 
+      :awayTeamId="g[0].awayTeamId" 
+      :stadium="g[0].stadium" 
+      :referee="g[0].referee" 
+      :homeTeamScore="g[0].homeTeamScore" 
+      :awayTeamScore="g[0].awayTeamScore" 
+      :key="g.game_id"></GamePreview>
   </div>
 </template>
 
@@ -21,6 +24,7 @@ export default {
   data() {
     return {
       games: [],
+      message: ""
         // {
         //   id:25,
         //   hostTeam: "Maccabi Tel-Aviv",
@@ -40,18 +44,22 @@ export default {
   },
   methods: {
     async updateGames(){
-      console.log("response");
+      //console.log("response");
       try {
         const response = await this.axios.get(
           "http://localhost:3000/users/favoriteGames",
         );
-        const games = response.data.games;
+        const games = response.data;
+        console.log("aaaaaaaaaaaaaaaaaaaaaa");
+        console.log(response.data);
+        //console.log(games);
         this.games = [];
         this.games.push(...games);
-        console.log(response);
       } catch (error) {
         console.log("error in update games")
         console.log(error);
+        this.$root.toast("Login", error.response.data, "fail");
+
       }
     }
   }, 

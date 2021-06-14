@@ -110,7 +110,7 @@ export default {
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
-        this.$root.toast("Login", "Username or Password incorrect", "fail");
+        this.$root.toast("Login", err.response.data, "fail");
       }
     },
     onLogin() {

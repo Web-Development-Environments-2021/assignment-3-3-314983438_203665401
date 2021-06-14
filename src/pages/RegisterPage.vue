@@ -193,7 +193,7 @@ export default {
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
-        //this.$root.toast(err);
+        this.$root.toast("Register", err.response.data, "fail");
       }
     },
     onRegister() {

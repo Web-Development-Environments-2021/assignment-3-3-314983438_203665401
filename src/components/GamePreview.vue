@@ -1,13 +1,17 @@
 <template>
   <div class="game-preview">
     <div :title="id" class="game-title">
-      <b>Game Id:</b> {{ id }}
+      <b>Game Id:</b> {{ game_id }}
     </div>
     <ul class="game-content">
-      <li> host: {{ hostTeam }}</li>
-      <li> guest: {{ guestTeam }}</li>
       <li> date: {{ date }}</li>
-      <li> time: {{ hour }}</li>
+      <li> homeTeamId: {{ homeTeamId }}</li>
+      <li> awayTeamId: {{ awayTeamId }}</li>
+      <li> stadium: {{ stadium }}</li>
+      <li> referee: {{ referee }}</li>
+      <li> homeTeamScore: {{ homeTeamScore }}</li>
+      <li> awayTeamScore: {{ awayTeamScore }}</li>
+
     </ul>
   </div>
 </template>
@@ -16,23 +20,35 @@
 export default {
   name: "GamePreview",
   props: {
-      id: {
+      game_id: {
         type: Number,
-        required: true
-      },
-      hostTeam: {
-        type: String,
-        required: true
-      },
-      guestTeam: {
-        type: String,
         required: true
       },
       date: {
         type: String,
         required: true
       },
-      hour: {
+      homeTeamId: {
+        type: String,
+        required: true
+      },
+      awayTeamId: {
+        type: String,
+        required: true
+      },
+      stadium: {
+        type: String,
+        required: true
+      },
+      referee: {
+        type: String,
+        required: true
+      },
+      homeTeamScore: {
+        type: String,
+        required: true
+      },
+      awayTeamScore: {
         type: String,
         required: true
       }
@@ -46,8 +62,8 @@ export default {
 <style>
 .game-preview {
   display: inline-block;
-  width: 250px;
-  height: 200px;
+  width: 300px;
+  height: 220px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;

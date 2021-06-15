@@ -6,8 +6,10 @@
     <ul class="player-content">
       <li> name: {{ name }}</li>
       <li> image: {{ image }}</li>
+      <img :src= image >
       <li> position: {{ position }}</li>
       <li> team_name: {{ team_name }}</li>
+      
     </ul>
   </div>
 </template>
@@ -21,7 +23,7 @@ export default {
         required: true
       },
       image: {
-        type: ImageData,
+        type: Image,
         required: true
       },
       position: {

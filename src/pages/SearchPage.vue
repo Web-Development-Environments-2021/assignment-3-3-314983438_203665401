@@ -14,6 +14,7 @@
       :name="p.name" 
       :image="p.image" 
       :position="p.position" 
+      :src="p.image"
       :team_name="p.team_name" 
       :key="p.name"></PlayerPreview>
   </div>

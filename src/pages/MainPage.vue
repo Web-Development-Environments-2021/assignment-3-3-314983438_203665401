@@ -4,6 +4,7 @@
     <LoginPage v-if="!$root.store.username"></LoginPage>
     <FavoriteGames v-else></FavoriteGames>
     <LeagueInfo></LeagueInfo>
+    <!--SearchPage></SearchPage-->
   </div>
 </template>
 
@@ -11,11 +12,13 @@
 import LeagueInfo from "../components/LeagueInfo";
 import FavoriteGames from "../components/FavoriteGames";
 import LoginPage from "../pages/LoginPage";
+//import SearchPage from "../pages/SearchPage.vue";
 export default {
   components: {
     LeagueInfo, 
     LoginPage, 
-    FavoriteGames
+    FavoriteGames,
+    //SearchPage
   }
 };
 </script>

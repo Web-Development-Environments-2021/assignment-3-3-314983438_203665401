@@ -38,7 +38,7 @@ export default {
       //console.log("response");
       try {
         const response = await this.axios.get(
-         //`http://localhost:3000/teams/SearchTeamById/${searchQuery}`,
+        //  `http://localhost:3000/teams/SearchTeamById/${route.params}`,
           `http://localhost:3000/teams/SearchTeamById/939`,
         );
         const players = response.data;

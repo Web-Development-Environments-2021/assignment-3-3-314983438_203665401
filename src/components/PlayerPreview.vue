@@ -1,15 +1,17 @@
 <template>
   <div class="player-preview">
     <div :title="id" class="player-title">
-      <b>Game Id:</b> {{ game_id }}
+      <b></b> {{ name }}
+            <b></b>
     </div>
     <ul class="player-content">
-      <li> name: {{ name }}</li>
-      <li> image: {{ image }}</li>
+      <!-- <li> name: {{ name }}</li> -->
+      <br/>
+      <li> Position: {{ position }}</li>
+      <li> Team name: {{ team_name }}</li>
+      <!-- <li> image: {{ image }}</li> -->
+      <br/>
       <img :src= image >
-      <li> position: {{ position }}</li>
-      <li> team_name: {{ team_name }}</li>
-      
     </ul>
   </div>
 </template>
@@ -44,10 +46,10 @@ export default {
 <style>
 .player-preview {
   display: inline-block;
-  width: 300px;
-  height: 220px;
+  width: 250px;
+  height: 300px;
   position: relative;
-  margin: 10px 10px;
+  margin: 15px 40px;
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;

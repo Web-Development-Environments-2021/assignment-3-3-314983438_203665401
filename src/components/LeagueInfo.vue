@@ -6,11 +6,21 @@
       style="max-width: 20rem;"
       class="mb-2"
     >
-      <b-card-title>{{leagueName}}</b-card-title>
+      <b-card-title>{{league.league_name}}</b-card-title>
       <b-card-text>
-        Season: {{ season }}
+        Season name: {{ league.current_season_name }}
         <br/>
-        Stage: {{ stage }}
+        Stage name: {{ league.current_stage_name }}
+        <br/>
+        Next Game Date: {{ league.next_game_date }}
+        <br/>
+        Next Game home team: {{ league.next_game_hometeam }}
+        <br/>
+        Next Game away team: {{ league.next_game_homeaway }}
+        <br/>
+        <!-- Season: {{ season }}
+        <br/>
+        Stage: {{ stage }} -->
       </b-card-text>
       <b-button href="#" variant="primary">Go somewhere</b-button>
     </b-card>
@@ -21,11 +31,38 @@
 export default {
  data() {
     return {
-      leagueName: "superliga", 
-      season: "season", 
-      stage: "stage"
+      // leagueName: "superliga", 
+      // season: "season", 
+      // stage: "stage"
+      league: [],
+      searchQuery:""
     };
   },
+    methods: {
+    async LeagueDetails(){
+      //console.log("response");
+      try {
+        const response = await this.axios.get(
+          `http://localhost:3000/league/getDetails`,
+        );
+        const league = response.data;
+        console.log("aaaaaaaaaaaaaaaaaaaaaa");
+        console.log(response.data);
+        //console.log(games);
+        this.league = [];
+        this.league.push(...league);
+      } catch (error) {
+        console.log("error in league details")
+        console.log(error);
+        this.$root.toast("league details", error.response.data, "fail");
+
+      }
+    }
+  }, 
+  mounted(){
+    console.log("league details mounted");
+    this.LeagueDetails(); 
+  }
 }
 </script>
 

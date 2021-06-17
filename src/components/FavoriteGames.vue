@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       games: [],
-      message: ""
+      // message: ""
         // {
         //   id:25,
         //   hostTeam: "Maccabi Tel-Aviv",
@@ -46,9 +46,11 @@ export default {
     async updateGames(){
       //console.log("response");
       try {
+        this.axios.defaults.withCredentials = true;
         const response = await this.axios.get(
           "http://localhost:3000/users/favoriteGames",
         );
+        this.axios.defaults.withCredentials = false;
         const games = response.data;
         console.log("aaaaaaaaaaaaaaaaaaaaaa");
         console.log(response.data);

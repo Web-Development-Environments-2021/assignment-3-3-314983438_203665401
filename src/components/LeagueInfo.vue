@@ -43,7 +43,7 @@ export default {
       //console.log("response");
       try {
         const response = await this.axios.get(
-          `http://localhost:3000/league/getDetails`,
+          // `http://localhost:3000/league/getDetails`,
         );
         const league = response.data;
         console.log("aaaaaaaaaaaaaaaaaaaaaa");
@@ -70,7 +70,7 @@ export default {
 .league-preview {
   display: inline-block;
   width: 250px;
-  height: 200px;
+  height: 250px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;

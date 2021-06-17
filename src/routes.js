@@ -23,9 +23,24 @@ const routes = [
     component: () => import("./pages/SearchPage")
   },
   {
+    path: "/CurrentGames",
+    name: "CurrentGames",
+    component: () => import("./pages/CurrentGames")
+  },
+  {
+    path: "/About",
+    name: "About",
+    component: () => import("./pages/About")
+  },
+  {
     path: "/favoriteGames",
     name: "favoriteGames",
     component: () => import("./components/FavoriteGames")
+  },
+  {
+    path: "/PlayerPage/:player_id",
+    name: "PlayerPage",
+    component: () => import("./pages/PlayerPage")
   },
   {
     path: "*",

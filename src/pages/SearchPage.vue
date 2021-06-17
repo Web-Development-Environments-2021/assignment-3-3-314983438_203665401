@@ -4,13 +4,14 @@
     <b-input-group prepend="Search Query:" id="search-input">
       <b-form-input v-model="searchQuery"></b-form-input>
       <b-input-group-append>
-        <b-button type="submit" v-on:click="SearchTeam" variant="success">Search</b-button>
+        <b-button type="submit" v-on:click="SearchTeam(searchQuery)" variant="success">Search</b-button>
       </b-input-group-append>
     </b-input-group>
       <br/>
       Your search Query: {{ searchQuery }}
       <PlayerPreview
       v-for="p in players"
+      :player_id="p.player_id"
       :name="p.name" 
       :image="p.image" 
       :position="p.position" 
@@ -34,12 +35,12 @@ export default {
     };
   },
     methods: {
-    async SearchTeam(){
+    async SearchTeam(search){
       //console.log("response");
       try {
         const response = await this.axios.get(
-        //  `http://localhost:3000/teams/SearchTeamById/${route.params}`,
-          `http://localhost:3000/teams/SearchTeamById/939`,
+         `http://localhost:3000/teams/SearchTeamById/${search}`,
+        //  `http://localhost:3000/teams/SearchTeamById/939`,
         );
         const players = response.data;
         console.log("aaaaaaaaaaaaaaaaaaaaaa");
@@ -57,7 +58,7 @@ export default {
   }, 
   mounted(){
     console.log("team players mounted");
-    this.SearchTeam(); 
+    //this.SearchTeam(); 
   }
 }
 </script>

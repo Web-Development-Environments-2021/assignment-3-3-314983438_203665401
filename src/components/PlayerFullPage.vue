@@ -1,30 +1,27 @@
 <template>
-  <div class="player-preview">
-    <div :title="id" class="player-title">
+  <div class="player_full-preview">
+    <div :title="id" class="player_full-title">
       <b></b> {{ name }}
             <b></b>
     </div>
-    <ul class="player-content">
-      <!-- <li> name: {{ name }}</li> -->
+    <ul class="player_full-content">
       <br/>
-      <li> Position: {{ position }}</li>
-      <li> Team name: {{ team_name }}</li>
-      <!-- <li> image: {{ image }}</li> -->
+      <li> nationality: {{ nationality }}</li>
+      <li> birth date: {{ birthdate }}</li>
+      <li> birth country: {{ birthcountry }}</li>
+      <li> height: {{ height }}</li>
+      <li> weight: {{ weight }}</li>
+
       <br/>
       <img :src= image >
     </ul>
-    <b-button type="submit" :to="{ name: 'PlayerPage' ,params: {player_id: `${this.player_id}`}}" href="#" variant="primary">Go somewhere</b-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PlayerPreview",
+  name: "PlayerFullPage",
   props: {
-      player_id: {
-        type: Number,
-        required: true
-      },
       name: {
         type: String,
         required: true
@@ -33,11 +30,23 @@ export default {
         type: Image,
         required: true
       },
-      position: {
+      nationality: {
+        type: String,
+        required: true
+      },
+      birthdate: {
+        type: String,
+        required: true
+      },
+      birthcountry: {
         type: Number,
         required: true
       },
-      team_name: {
+      height: {
+        type: String,
+        required: true
+      },
+      weight: {
         type: String,
         required: true
       }

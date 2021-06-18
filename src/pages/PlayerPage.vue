@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1 class="title">Search Page</h1>
+    <!-- <h1 class="title">Search Page</h1>
       <br/>
-      Your search Query: {{ searchQuery }}
+      Your search Query: {{ searchQuery }} -->
       <PlayerFullPage
       :name="this.name" 
       :image="this.image" 

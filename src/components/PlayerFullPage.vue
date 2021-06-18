@@ -1,21 +1,37 @@
 <template>
-  <div class="player_full-preview">
-    <div :title="id" class="player_full-title">
-      <b></b> {{ name }}
-            <b></b>
-    </div>
-    <ul class="player_full-content">
-      <br/>
-      <li> nationality: {{ nationality }}</li>
-      <li> birth date: {{ birthdate }}</li>
-      <li> birth country: {{ birthcountry }}</li>
-      <li> height: {{ height }}</li>
-      <li> weight: {{ weight }}</li>
+<div >
+<header class='masthead'>
+  <p class='masthead-intro'>Hi I'm</p>
+  <h1 class='masthead-heading'>{{ name }}</h1>
+</header>
+<section class="introduction-section">
+    <h1>Me:</h1><br>
+    <img :src= image >  
+</section>
+<section class="location-section">
+    <h1>Where I'm From</h1>
+    <p>I'm originally from {{ birthcountry }}. </p>
+</section>
+<section class="questions-section">
+    <h1>More About Me</h1>
+    <h2>Some personal data</h2>
+    <p>My nationality: {{nationality}}</p>
+    <p>My birth date: {{birthdate}}</p>
+    <p>My height: {{height}}</p>
+    <p>My weight: {{weight}}</p>
 
-      <br/>
-      <img :src= image >
-    </ul>
-  </div>
+</section>
+
+<!-- <footer class="content-footer">
+    <p>Say hi to me on these social networks:</p>
+    <ul class="social">
+        <li><a class="css-is-deranged" href="_INSERT_GITHUB_URL_HERE_">GitHub</a></li>
+        <li><a class="css-is-deranged" href="_INSERT_TWITTER_URL_HERE_">Twitter</a></li>
+        <li><a class="css-is-deranged" href="_INSERT_GOOGLE+_URL_HERE_">Google+</a></li>
+    </ul> -->
+  
+<!-- </footer> -->
+</div>
 </template>
 
 <script>
@@ -58,27 +74,157 @@ export default {
 </script>
 
 <style>
-.player-preview {
-  display: inline-block;
-  width: 250px;
-  height: 330px;
-  position: relative;
-  margin: 15px 40px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
+body {
+    /* Typography Declarations */
+    color: #222222;
+    font-size: 1em;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.player-preview .player-title {
+.content-footer,
+.masthead-heading,
+.masthead-intro {
   text-align: center;
-  text-transform: uppercase;
-  color:  rgb(111, 197, 157);
 }
 
-.player-preview .player-content {
-  width: 100%;
-  overflow: hidden;
+.masthead {
+  padding: 6em 0;
+  background-image: url('https://i.imgur.com/yGmrlyg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top: solid 1em #FFCF33;
+}
+
+.masthead-intro {
+    /* Layout Declarations */
+    margin-bottom: 0.1em;
+    /* Typography Declarations */
+    font-family: "Gentium Book Basic", Georgia, serif;
+    font-size: 2em;
+}
+
+.masthead-heading {
+    /* Layout Declarations */
+    color: #F1C863;
+    margin-top: -0.2em;
+    /* Typography Declarations */
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    font-size: 6em;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.introduction-section,
+.location-section,
+.questions-section {
+    max-width: 38em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+}
+
+.introduction-section > p,
+.location-section > p,
+.questions-section,
+.content-footer > p {
+    /* Typography Declarations */
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.questions-section > h2 {
+    font-family: "Gentium Book Basic", Georgia, serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    /* Layout */
+    margin: 2em 0 1em 0;
+}
+
+section > h1 {
+    margin-top: 2em;
+}
+
+.content-footer,
+.masthead-heading,
+.masthead-intro {
+  text-align: center;
+}
+
+.masthead {
+  padding: 6em 0;
+  background-image: url('https://i.imgur.com/yGmrlyg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top: solid 1em #FFCF33;
+}
+
+.masthead-intro {
+  margin-bottom: 0.1em;
+  font-family: "Gentium Book Basic", Georgia, serif;
+    font-size: 2em;
+}
+
+.masthead-heading {
+  margin-top: -0.2em;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  font-size: 6em;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.introduction > p,
+.location > p,
+.content-footer > p {
+    /* Typography Declarations */
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+h2 {
+    /* Typography Declarations */
+    font-family: "Gentium Book Basic", Georgia, serif;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.introduction-section,
+.location-section,
+.questions-section {
+    max-width: 38em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+}
+.content-footer {
+  margin: 50px 0;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #73A8C2;
+  text-decoration: none;
+}
+.social > li {
+  display: inline-block;
+  margin: 0 5px;
+}
+.content-footer > p {
+  color: #F7EDE1;
+}
+a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #F1C863;
+}
+  
+@media only screen and (max-width: 500px) {
+    .masthead {
+        padding: 3em 0;
+    }
+    .masthead-heading {
+        font-size: 3em;
+    }
+    .content-footer {
+        padding: 2em 2.5em;
+  }
 }
 
 </style>

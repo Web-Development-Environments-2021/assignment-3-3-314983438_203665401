@@ -60,7 +60,7 @@ export default {
       } catch (error) {
         console.log("error in update games")
         console.log(error);
-        this.$root.toast("Login", error.response.data, "fail");
+        this.$root.toast("favoriteGames", error.response.data, "fail");
 
       }
     }

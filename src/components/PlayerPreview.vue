@@ -13,7 +13,7 @@
       <br/>
       <img :src= image >
     </ul>
-    <b-button type="submit" :to="{ name: 'PlayerPage' ,params: {player_id: `${this.player_id}`}}" href="#" variant="primary">Go somewhere</b-button>
+    <b-button style="margin: 0 auto; display: block;" type="submit" :to="{ name: 'PlayerPage' ,params: {player_id: `${this.player_id}`}}" href="#" variant="primary" >{{name}}</b-button>
   </div>
 </template>
 
@@ -52,7 +52,7 @@ export default {
 .player-preview {
   display: inline-block;
   width: 250px;
-  height: 330px;
+  height: 334px;
   position: relative;
   margin: 15px 40px;
   border-style: solid;

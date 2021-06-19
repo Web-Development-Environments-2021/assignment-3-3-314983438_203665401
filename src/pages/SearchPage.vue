@@ -8,7 +8,7 @@
       </b-input-group-append>
     </b-input-group>
       <br/>
-      Your search Query: {{ searchQuery }}
+      <!-- Your search Query: {{ searchQuery }} -->
       <PlayerPreview
       v-for="p in players"
       :player_id="p.player_id"

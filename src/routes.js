@@ -43,6 +43,16 @@ const routes = [
     component: () => import("./pages/PlayerPage")
   },
   {
+    path: "/teampreview",
+    name: "teampreview",
+    component: () => import("./components/TeamPreview")
+  },
+  {
+    path: "/TeamPage/:team_id",
+    name: "TeamPage",
+    component: () => import("./pages/TeamPage")
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound

@@ -6,6 +6,9 @@
       <PlayerFullPage
       :name="this.name" 
       :image="this.image" 
+      :common_name="this.common_name"
+      :position="this.position"
+      :team="this.team"
       :nationality="this.nationality" 
       :birthdate="this.birthdate"
       :birthcountry="this.birthcountry" 
@@ -26,6 +29,9 @@ export default {
     return {
         name: "",
         image: "",
+        common_name: "",
+        position: "",
+        team: "",
         nationality: "",
         birthdate: "",
         birthcountry: "",
@@ -41,6 +47,9 @@ export default {
         );
         this.name = response.data[0].fullname;
         this.image = response.data[0].image_url;
+        this.common_name = response.data[0].common_name;
+        this.position = response.data[0].position;
+        this.team = response.data[0].team;
         this.nationality = response.data[0].nationality;
         this.birthdate = response.data[0].birthdate;
         this.birthcountry = response.data[0].birthcountry;

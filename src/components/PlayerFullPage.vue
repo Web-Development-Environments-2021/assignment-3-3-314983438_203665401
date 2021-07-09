@@ -5,20 +5,23 @@
   <h1 class='masthead-heading'>{{ name }}</h1>
 </header>
 <section class="introduction-section">
-    <h1>Me:</h1><br>
+    <!-- <h1>Me:</h1><br> -->
     <img :src= image >  
 </section>
-<section class="location-section">
+<!-- <section class="location-section">
     <h1>Where I'm From</h1>
     <p>I'm originally from {{ birthcountry }}. </p>
-</section>
+</section> -->
 <section class="questions-section">
-    <h1>More About Me</h1>
+    <!-- <h1>More About Me</h1> -->
     <h2>Some personal data</h2>
-    <p>My nationality: {{nationality}}</p>
-    <p>My birth date: {{birthdate}}</p>
-    <p>My height: {{height}}</p>
-    <p>My weight: {{weight}}</p>
+    <p>I'm originally from {{ birthcountry }}. </p>
+    <!-- <p>My nationality: {{nationality}}</p> -->
+    <p>My birth date is {{birthdate}}.</p>
+    <p>My common name is {{common_name}}.</p>
+    <p>I play for {{team}} in position number {{position}}.</p>
+    <p v-if="height">My height: {{height}}</p>
+    <p v-if="weight">My weight: {{weight}}</p>
 
 </section>
 
@@ -42,8 +45,20 @@ export default {
         type: String,
         required: true
       },
+      team:{
+        type: String,
+        required: true
+      },
+      position:{
+        type: Number,
+        required: true
+      },
       image: {
-        type: Image,
+        type: String,
+        required: true
+      },
+      common_name:{
+        type: String,
         required: true
       },
       nationality: {
@@ -55,7 +70,7 @@ export default {
         required: true
       },
       birthcountry: {
-        type: Number,
+        type: String,
         required: true
       },
       height: {

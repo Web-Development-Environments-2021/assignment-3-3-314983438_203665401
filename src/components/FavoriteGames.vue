@@ -2,14 +2,14 @@
   <div>
     <GamePreview
       v-for="g in games"
-      :game_id="g[0].game_id" 
-      :date="g[0].date" 
-      :homeTeamId="g[0].homeTeamId" 
-      :awayTeamId="g[0].awayTeamId" 
-      :stadium="g[0].stadium" 
-      :referee="g[0].referee" 
-      :homeTeamScore="g[0].homeTeamScore" 
-      :awayTeamScore="g[0].awayTeamScore" 
+      :game_id="g.game_id" 
+      :date="g.date" 
+      :homeTeamId="g.homeTeamId" 
+      :awayTeamId="g.awayTeamId" 
+      :stadium="g.stadium" 
+      :referee="g.referee" 
+      :homeTeamScore="g.homeTeamScore" 
+      :awayTeamScore="g.awayTeamScore" 
       :key="g.game_id"></GamePreview>
   </div>
 </template>

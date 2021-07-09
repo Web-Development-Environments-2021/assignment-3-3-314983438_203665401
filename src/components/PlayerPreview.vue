@@ -11,7 +11,7 @@
       <li> Team name: {{ team_name }}</li>
       <!-- <li> image: {{ image }}</li> -->
       <br/>
-      <img :src= image >
+      <router-link :to="{ name: 'PlayerPage', params: { player_id: `${this.player_id}` }}"><img :src= image ></router-link>
     </ul>
     <b-button style="margin: 0 auto; display: block;" type="submit" :to="{ name: 'PlayerPage' ,params: {player_id: `${this.player_id}`}}" href="#" variant="primary" >{{name}}</b-button>
   </div>

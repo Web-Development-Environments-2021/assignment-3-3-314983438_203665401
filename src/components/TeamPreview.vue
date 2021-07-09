@@ -5,9 +5,9 @@
     </div>
     <ul class="team-content">
       <br>
-      <img :src= team_logo >
+      <router-link :to="{ name: 'TeamPage', params: { team_name: `${this.team_name}` }}"><img :src= team_logo ></router-link>
     </ul>
-        <b-button style="margin: 0 auto; display: block;" type="submit" :to="{ name: 'TeamPage' ,params: {team_name: `${team_name}`}}" href="#" variant="primary" >{{team_name}}</b-button>
+        <b-button style="margin: 0 auto; display: block;" type="submit" :to="{ name: 'TeamPage' ,params: {team_name: `${this.team_name}`}}" href="#" variant="primary" >{{team_name}}</b-button>
 
   </div>
 </template>

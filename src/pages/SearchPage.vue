@@ -10,6 +10,8 @@
       <br/>
       <!-- Your search Query: {{ searchQuery }} -->
       Teams:<br>
+              <b-button type="submit" v-on:click="SortTeamAZ()" variant="success">Sort Team A-Z</b-button>
+              <b-button type="submit" v-on:click="SortTeamZA()" variant="success">Sort Team Z-A</b-button>
       <TeamPreview
       v-for="t in team_details"
       :team_name="t.team_name"
@@ -17,6 +19,19 @@
       :key="t.team_id"></TeamPreview>
       <br>
       Players:<br>
+      <b-button type="submit" v-on:click="SortPlayersAZ()" variant="success">Sort Player A-Z</b-button>
+      <b-button type="submit" v-on:click="SortPlayersZA()" variant="success">Sort Player Z-A</b-button>
+      <b-button type="submit" v-on:click="SortPlayersByTeamAZ()" variant="success">Sort Player By Team Name A-Z</b-button>
+      <b-button type="submit" v-on:click="SortPlayersByTeamZA()" variant="success">Sort Player By Team Name Z-A</b-button>
+      <br>Filter By Position:
+      <b-form-select v-model="selected" v-on:change="filterplayers">
+        <option value="null">Filter By Position</option>
+        <option v-for="p in playersPositions" :key="p">{{p}}</option>
+        
+      </b-form-select>
+    <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+
+               <br>
       <PlayerPreview
       v-for="p in player_details"
       :player_id="p.id"
@@ -42,6 +57,9 @@ export default {
     return {
       team_details: [],
       player_details: [],
+      player_details_fixed: [],
+      playersPositions: [],
+      playersTeamNames: [],
       searchQuery:""
     };
   },
@@ -51,11 +69,10 @@ export default {
       try {
 
         /* searching team details */
-        const team_id = await this.axios.get(
-         `http://localhost:3000/teams/SearchTeamByName/${search}`,
-        );
-        this.team_details = team_id.data;
-
+        // const team_id = await this.axios.get(
+        //  `http://localhost:3000/teams/SearchTeamByName/${search}`,
+        // );
+        // this.team_details = team_id.data;
 
         /* searching player details */
         const player = await this.axios.get(
@@ -63,7 +80,23 @@ export default {
         );
         console.log(player.data);
         this.player_details = player.data;
-        
+        this.player_details_fixed = player.data;
+
+        /* array of all players positions, for filter */
+        this.playersPositions = [];
+        for (let i = 0; i < this.player_details.length; i++) {
+          if (!(this.playersPositions.includes(this.player_details[i].position))){
+            this.playersPositions.push(this.player_details[i].position)
+          };
+        }
+
+        /* array of all players Team Names, for filter */
+        this.playersTeamNames = [];
+        for (let i = 0; i < this.player_details.length; i++) {
+          if (!(this.playersTeamNames.includes(this.player_details[i].teamName))){
+            this.playersTeamNames.push(this.player_details[i].teamName)
+          };
+        }
 
       } catch (error) {
         console.log("error in team players");
@@ -71,6 +104,71 @@ export default {
         this.$root.toast("No Result Found", "We are sorry, we did not found anything for " + `${search}`, "fail");
 
       }
+    },
+        async SortTeamAZ(){
+
+          this.team_details.sort(function(a, b){
+            if(a.team_name < b.team_name) { return -1; }
+            if(a.team_name > b.team_name) { return 1; }
+            return 0;
+          });
+          console.log(this.team_details);
+
+    },
+        async SortTeamZA(){
+
+            this.team_details.sort(function(a, b){
+            if(a.team_name < b.team_name) { return 1; }
+            if(a.team_name > b.team_name) { return -1; }
+            return 0;
+          });
+          console.log(this.team_details);
+    },
+    async SortPlayersAZ(){
+
+          this.player_details.sort(function(a, b){
+            if(a.fullname < b.fullname) { return -1; }
+            if(a.fullname > b.fullname) { return 1; }
+            return 0;
+          });
+          console.log(this.player_details);
+
+    },
+        async SortPlayersZA(){
+
+            this.player_details.sort(function(a, b){
+            if(a.fullname < b.fullname) { return 1; }
+            if(a.fullname > b.fullname) { return -1; }
+            return 0;
+          });
+          console.log(this.player_details);
+    },
+        async SortPlayersByTeamAZ(){
+
+          this.player_details.sort(function(a, b){
+            if(a.team_name < b.team_name) { return -1; }
+            if(a.team_name > b.team_name) { return 1; }
+            return 0;
+          });
+          console.log(this.player_details);
+
+    },
+        async SortPlayersByTeamZA(){
+
+            this.player_details.sort(function(a, b){
+            if(a.team_name < b.team_name) { return 1; }
+            if(a.team_name > b.team_name) { return -1; }
+            return 0;
+          });
+          console.log(this.player_details);
+    },
+        async filterplayers(){
+            if (this.selected == "null")
+                this.player_details = this.player_details_fixed;
+            else {
+              this.player_details = this.player_details_fixed;
+              this.player_details = this.player_details.filter(p => p.position == this.selected);
+            };
     }
   }, 
   mounted(){

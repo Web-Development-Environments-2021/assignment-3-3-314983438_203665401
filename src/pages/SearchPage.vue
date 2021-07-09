@@ -76,12 +76,16 @@ export default {
         this.team_details = [];
         this.player_details = [];
         this.player_details_fixed = [];
-        /* searching team details */
-        const team_id = await this.axios.get(
-         `http://localhost:3000/teams/SearchTeamByName/${search}`,
-        );
-        this.team_details = team_id.data;
+        try{
+          /* searching team details */
+          const team_id = await this.axios.get(
+          `http://localhost:3000/teams/SearchTeamByName/${search}`,
+          );
+          this.team_details = team_id.data;
+        }catch (error) {
+      };
 
+        
         /* searching player details */
         const player = await this.axios.get(
         `http://localhost:3000/players/searchplayerbyname/${search}`,

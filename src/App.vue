@@ -7,6 +7,7 @@
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
         <b-nav-item :to="{ name: 'CurrentGames' }">Current Games</b-nav-item>
         <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
+        <b-nav-item :to="{ name: 'Managment' }"  v-if="$root.store.username == 'Admin'">Managment Page</b-nav-item>
         </b-navbar-nav>  
         <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
@@ -33,6 +34,7 @@ export default {
   methods: {
     Logout() {
       this.$root.store.logout();
+      this.axios.post(`http://localhost:3000/Logout`);
       this.axios.defaults.withCredentials = false; //remove cockie after logout
       this.$root.toast("Logout", "User logged out successfully", "success");
       this.$router.push("/").catch(() => {

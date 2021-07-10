@@ -9,6 +9,7 @@
       :awayTeamName="g.awayTeamName" 
       :stadium="g.stadium" 
       :referee="g.referee"
+      :showButton="true"
       :key="g.game_id"></GamePreview>
       <br>
       <h2>PAST GAMES:<br></h2>
@@ -22,6 +23,8 @@
       :referee="g.referee"
       :homeTeamScore="g.homeTeamScore"
       :awayTeamScore="g.awayTeamScore"
+      :events="g.events"
+      :showButton="false"
       :key="g.game_id"></GamePreview>
   </div>
 </template>
@@ -68,17 +71,6 @@ export default {
         );
         this.axios.defaults.withCredentials = false;
         const games = response.data;
-
-        // for (let i = 0; i < games.length; i++){
-        //   const homeTeamName = await this.axios.get(
-        //   `http://localhost:3000/teams/SearchTeamById/${games[i].homeTeamId}`,
-        //   );
-        //   const awayTeamName = await this.axios.get(
-        //   `http://localhost:3000/teams/SearchTeamById/${games[i].awayTeamId}`,
-        //   );
-        //   games[i].homeTeamName = homeTeamName;
-        //   games[i].awayTeamName = awayTeamName;
-        // }
         this.past_games = [];
         this.past_games.push(...games);
         console.log(this.past_games);

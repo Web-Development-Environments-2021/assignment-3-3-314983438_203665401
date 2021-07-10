@@ -217,6 +217,8 @@ export default {
       try {
         let momentDate = new Date(this.form.date + " " + this.form.time);
         console.log(momentDate);
+                this.axios.defaults.withCredentials = true;
+
         const response = await this.axios.post(
           "http://localhost:3000/admin/AddGame",
           {
@@ -225,9 +227,10 @@ export default {
         awayTeamName: this.form.awayTeamName,
         awayTeamId: this.form.awayTeamId,
         date: momentDate,
-        stadium: this.stadium,
+        stadium: this.form.stadium,
           }
         );
+        this.axios.defaults.withCredentials = false;
         // this.$router.push("/login");
         // console.log(response);
       } catch (err) {

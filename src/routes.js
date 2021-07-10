@@ -48,6 +48,11 @@ const routes = [
     component: () => import("./pages/PlayerPage")
   },
   {
+    path: "/EventsPage/:game_id",
+    name: "EventsPage",
+    component: () => import("./pages/EventsPage")
+  },
+  {
     path: "/teampreview",
     name: "teampreview",
     component: () => import("./components/TeamPreview")

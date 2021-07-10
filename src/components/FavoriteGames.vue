@@ -14,6 +14,7 @@
       :awayTeamScore="g.awayTeamScore" 
       :homeTeamName="g.homeTeamName" 
       :awayTeamName="g.awayTeamName" 
+      :showButton="false"
       :key="g.game_id">
       </GamePreview>
     </div>

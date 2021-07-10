@@ -1,19 +1,36 @@
 <template>
   <div class="game-preview">
-    <!-- what is title???? -->
     <div class="game-title">
       <b>Game Id:</b> {{ game_id }}
     </div>
     <ul class="game-content">
       <li> Date: {{ date }}</li>
-      <li> Home Team Name: {{ homeTeamName }}</li>
-      <li> Away Team Name: {{ awayTeamName }}</li>
+      <!-- <li> Home Team: {{ homeTeamName }}</li>
+      <li> Away Team: {{ awayTeamName }}</li> -->
+      <li> Home Team Name: 
+        <router-link type="submit" :to="{ name: 'TeamPage' ,params: {team_name: `${homeTeamName}`}}" href="#" variant="primary">{{ homeTeamName }}</router-link>
+      </li>
+      <li> Away Team Name: 
+            <router-link type="submit" :to="{ name: 'TeamPage' ,params: {team_name: `${awayTeamName}`}}" href="#" variant="primary">{{ awayTeamName }}</router-link>
+      </li>
       <li> Stadium: {{ stadium }}</li>
-      <li v-if="referee != NULL"> referee: {{ referee }}</li>
-      <li v-if="homeTeamScore != NULL && awayTeamScore != NULL"> Result {{ homeTeamScore }} - {{ awayTeamScore }}</li>
+      <li v-if="referee"> Referee: {{ referee }}</li>
+      <li v-if="homeTeamScore >= 0 && awayTeamScore >= 0"> Result {{ homeTeamScore }} - {{ awayTeamScore }}</li>
+      <li v-if="events">
+        <router-link type="submit" :to="{ name: 'EventsPage' ,params: {events: `${events}`}}" href="#" variant="primary">Event Book</router-link>
+      </li>
     </ul>
-    <b-button v-on:click="addToFavorites()" type="submit" class="button" variant="primary">Add To Favorites</b-button>
-    <!-- v-if="username != undefined" -->
+    <b-button v-if="$root.store.username && showButton" v-on:click="addToFavorites()" type="submit" class="button" variant="primary">Add To Favorites</b-button>
+    <!-- <b-list-group v-if="events">
+      <h4>Event Book</h4>
+        <b-list-group-item variant="secondary" v-for="e in events" :key="e.eventId">
+          <h5>{{e.type}}</h5>
+          <p>Minute: {{e.minuteOfGame}}<br>
+            Player: {{e.player_id}}<br>
+            Description: {{e.description}}</p>
+        </b-list-group-item>
+    </b-list-group> -->
+
   </div>
 </template>
 
@@ -52,6 +69,13 @@ export default {
       awayTeamScore: {
         type: Number,
         // required: true
+      },
+      events: {
+        type: Array
+      },
+      showButton: {
+        type: Boolean,
+        required: true
       }
   }, 
   methods: {
@@ -75,7 +99,6 @@ export default {
         this.$root.toast("favoriteGames", error.response.data, "fail");
 
       }
-
     }
   },
   mounted(){

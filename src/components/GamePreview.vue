@@ -13,6 +13,7 @@
       <li v-if="homeTeamScore != NULL && awayTeamScore != NULL"> Result {{ homeTeamScore }} - {{ awayTeamScore }}</li>
     </ul>
     <b-button v-on:click="addToFavorites()" type="submit" class="button" variant="primary">Add To Favorites</b-button>
+    <!-- v-if="username != undefined" -->
   </div>
 </template>
 
@@ -55,6 +56,25 @@ export default {
   }, 
   methods: {
     async addToFavorites(){
+        // console.log("mohahahahaha");
+        // console.log(localStorage.username);
+        // console.log(this.game_id);
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.post(
+          "http://localhost:3000/users/favoriteGames",
+          {
+            game_id: this.game_id
+          }
+        );
+        this.axios.defaults.withCredentials = false;
+        this.$root.toast("favoriteGames", response.data, "success");
+      } catch (error) {
+        console.log("error in adding to favorite games")
+        console.log(error);
+        this.$root.toast("favoriteGames", error.response.data, "fail");
+
+      }
 
     }
   },

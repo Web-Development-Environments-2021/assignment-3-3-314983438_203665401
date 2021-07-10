@@ -6,23 +6,19 @@
       style="max-width: 20rem;"
       class="mb-2"
     >
-      <b-card-title>{{league.league_name}}</b-card-title>
+      <b-card-title>{{this.leaguename}}</b-card-title>
       <b-card-text>
-        Season name: {{ league.current_season_name }}
+        Season name: {{ this.current_season_name }}
         <br/>
-        Stage name: {{ league.current_stage_name }}
+        <!-- Stage name: {{ this.current_stage_name }}
+        <br/> -->
+        Next Game Date: {{ this.next_game_date }}
         <br/>
-        Next Game Date: {{ league.next_game_date }}
+        Next Game home team: {{ this.next_game_hometeam }}
         <br/>
-        Next Game home team: {{ league.next_game_hometeam }}
+        Next Game away team: {{ this.next_game_awayteam }}
         <br/>
-        Next Game away team: {{ league.next_game_awayteam }}
-        <br/>
-        <!-- Season: {{ season }}
-        <br/>
-        Stage: {{ stage }} -->
       </b-card-text>
-      <b-button href="#" variant="primary">Go somewhere</b-button>
     </b-card>
   </div>
 </template>
@@ -31,29 +27,32 @@
 export default {
  data() {
     return {
-      // leagueName: "superliga", 
-      // season: "season", 
-      // stage: "stage"
-      league: [],
-      searchQuery:""
+      leaguename: "",
+      current_season_name: "",
+      // current_stage_name:"",
+      next_game_date: "",
+      next_game_hometeam: "",
+      next_game_awayteam: "",
+      query: "",
     };
   },
     methods: {
     async LeagueDetails(){
-      //console.log("response");
       try {
         const response = await this.axios.get(
-          // `http://localhost:3000/league/getDetails`,
+          `http://localhost:3000/league/getDetails`,
         );
-        const league = response.data;
+        this.leaguename = response.data.league_name;
+        this.current_season_name = response.data.current_season_name;
+        // this.current_stage_name = response.data.current_stage_name;
+        this.next_game_date = response.data.next_game_date;
+        this.next_game_hometeam = response.data.next_game_hometeam;
+        this.next_game_awayteam = response.data.next_game_homeaway;
         console.log(response.data);
-        //console.log(games);
-        this.league = [];
-        this.league.push(...league);
       } catch (error) {
         console.log("error in league details")
         console.log(error);
-        this.$root.toast("league details", error.response.data, "fail");
+        // this.$root.toast("league details", error.response.data, "fail");
 
       }
     }
@@ -68,7 +67,7 @@ export default {
 <style>
 .league-preview {
   display: inline-block;
-  width: 250px;
+  width: 350px;
   height: 250px;
   position: relative;
   margin: 10px 10px;

@@ -1,6 +1,6 @@
 <template>
   <div>
-      FUTURE GAMES:<br>
+      <h2>FUTURE GAMES:<br></h2>
     <GamePreview
       v-for="g in future_games"
       :game_id="g.game_id"
@@ -11,7 +11,7 @@
       :referee="g.referee"
       :key="g.game_id"></GamePreview>
       <br>
-      PAST GAMES:<br>
+      <h2>PAST GAMES:<br></h2>
     <GamePreview
       v-for="g in past_games"
       :game_id="g.game_id"
@@ -68,10 +68,20 @@ export default {
         );
         this.axios.defaults.withCredentials = false;
         const games = response.data;
+
+        // for (let i = 0; i < games.length; i++){
+        //   const homeTeamName = await this.axios.get(
+        //   `http://localhost:3000/teams/SearchTeamById/${games[i].homeTeamId}`,
+        //   );
+        //   const awayTeamName = await this.axios.get(
+        //   `http://localhost:3000/teams/SearchTeamById/${games[i].awayTeamId}`,
+        //   );
+        //   games[i].homeTeamName = homeTeamName;
+        //   games[i].awayTeamName = awayTeamName;
+        // }
         this.past_games = [];
         this.past_games.push(...games);
         console.log(this.past_games);
-        console.log(this.past_games[0].awayTeamScore);
       } catch (error) {
         console.log("error in past Games")
         console.log(error);

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <GamePreview
+    <h1 style="text-align:center">Your favorite matches</h1>
+    <div v-if="games.length > 0">
+      <GamePreview
       v-for="g in games"
       :game_id="g.game_id" 
       :date="g.date" 
@@ -10,7 +12,10 @@
       :referee="g.referee" 
       :homeTeamScore="g.homeTeamScore" 
       :awayTeamScore="g.awayTeamScore" 
-      :key="g.game_id"></GamePreview>
+      :key="g.game_id">
+      </GamePreview>
+    </div>
+    <div v-else>{{errorMessage}}</div>
   </div>
 </template>
 
@@ -24,6 +29,7 @@ export default {
   data() {
     return {
       games: [],
+      errorMessage:"No favorite matches found",
     };
   },
   methods: {

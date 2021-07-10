@@ -16,7 +16,7 @@
         <br/>
         Next Game home team: {{ league.next_game_hometeam }}
         <br/>
-        Next Game away team: {{ league.next_game_homeaway }}
+        Next Game away team: {{ league.next_game_awayteam }}
         <br/>
         <!-- Season: {{ season }}
         <br/>
@@ -46,7 +46,6 @@ export default {
           // `http://localhost:3000/league/getDetails`,
         );
         const league = response.data;
-        console.log("aaaaaaaaaaaaaaaaaaaaaa");
         console.log(response.data);
         //console.log(games);
         this.league = [];

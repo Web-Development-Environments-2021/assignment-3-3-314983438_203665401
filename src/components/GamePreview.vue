@@ -5,15 +5,14 @@
       <b>Game Id:</b> {{ game_id }}
     </div>
     <ul class="game-content">
-      <li> date: {{ date }}</li>
-      <li> homeTeamId: {{ homeTeamId }}</li>
-      <li> awayTeamId: {{ awayTeamId }}</li>
-      <li> stadium: {{ stadium }}</li>
-      <li v-if="referee"> referee: {{ referee }}</li>
-      <li v-if="homeTeamScore >= 0"> homeTeamScore: {{ homeTeamScore }}</li>
-      <li v-if="awayTeamScore >= 0"> awayTeamScore: {{ awayTeamScore }}</li>
-
+      <li> Date: {{ date }}</li>
+      <li> Home Team ID: {{ homeTeamId }}</li>
+      <li> Away Team ID: {{ awayTeamId }}</li>
+      <li> Stadium: {{ stadium }}</li>
+      <li v-if="referee != NULL"> referee: {{ referee }}</li>
+      <li v-if="homeTeamScore != NULL && awayTeamScore != NULL"> Result {{ homeTeamScore }} - {{ awayTeamScore }}</li>
     </ul>
+    <b-button v-on:click="addToFavorites()" type="submit" class="button" variant="primary">Add To Favorites</b-button>
   </div>
 </template>
 
@@ -54,6 +53,11 @@ export default {
         // required: true
       }
   }, 
+  methods: {
+    async addToFavorites(){
+
+    }
+  },
   mounted(){
     console.log("game preview mounted");
   } 
@@ -84,6 +88,9 @@ export default {
   overflow: hidden;
 }
 
-
+.game-preview .button {
+  display:table;
+  margin: 0 auto;
+}
 
 </style>

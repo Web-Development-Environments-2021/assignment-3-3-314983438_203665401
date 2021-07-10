@@ -54,6 +54,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   min-height: 100vh;
+  background-image: url('https://t3.ftcdn.net/jpg/02/74/26/56/360_F_274265614_DgRuQndXcekH2AbbzVnWEkPTBRx6O03R.jpg');
+  background-size: 100% 100%;
+  filter: contrast(150%);
 }
 
 #nav {

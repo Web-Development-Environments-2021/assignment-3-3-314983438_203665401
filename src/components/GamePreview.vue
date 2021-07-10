@@ -6,8 +6,8 @@
     </div>
     <ul class="game-content">
       <li> Date: {{ date }}</li>
-      <li> Home Team ID: {{ homeTeamId }}</li>
-      <li> Away Team ID: {{ awayTeamId }}</li>
+      <li> Home Team Name: {{ homeTeamName }}</li>
+      <li> Away Team Name: {{ awayTeamName }}</li>
       <li> Stadium: {{ stadium }}</li>
       <li v-if="referee != NULL"> referee: {{ referee }}</li>
       <li v-if="homeTeamScore != NULL && awayTeamScore != NULL"> Result {{ homeTeamScore }} - {{ awayTeamScore }}</li>
@@ -28,12 +28,12 @@ export default {
         type: String,
         required: true
       },
-      homeTeamId: {
-        type: Number,
+      homeTeamName: {
+        type: String,
         required: true
       },
-      awayTeamId: {
-        type: Number,
+      awayTeamName: {
+        type: String,
         required: true
       },
       stadium: {

@@ -12,6 +12,8 @@
       :referee="g.referee" 
       :homeTeamScore="g.homeTeamScore" 
       :awayTeamScore="g.awayTeamScore" 
+      :homeTeamName="g.homeTeamName" 
+      :awayTeamName="g.awayTeamName" 
       :key="g.game_id">
       </GamePreview>
     </div>

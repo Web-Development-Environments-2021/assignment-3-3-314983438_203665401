@@ -19,9 +19,22 @@
       :team_name="p.team_name" 
       :key="p.name"></PlayerPreview>
       <br>
-      <h1 align = "center">Our Games:</h1><br>
+      <h1 align = "center">Future Games:</h1><br>
           <GamePreview
-      v-for="g in teamgames"
+      v-for="g in teamfuturegames"
+      :game_id="g.game_id"
+      :date="g.date" 
+      :homeTeamName="g.homeTeamName" 
+      :awayTeamName="g.awayTeamName" 
+      :stadium="g.stadium" 
+      :referee="g.referee"
+      :homeTeamScore="g.homeTeamScore"
+      :awayTeamScore="g.awayTeamScore"
+      :key="g.game_id"></GamePreview>
+      <br>
+      <h1 align = "center">Past Games:</h1><br>
+          <GamePreview
+      v-for="g in teampastgames"
       :game_id="g.game_id"
       :date="g.date" 
       :homeTeamName="g.homeTeamName" 
@@ -47,7 +60,8 @@ export default {
  data() {
     return {
       players: [],
-      teamgames: [],
+      teamfuturegames: [],
+      teampastgames: [],
       teaminfo: []
     };
   },
@@ -74,9 +88,15 @@ export default {
         this.players.push(...players);
 
         /* team games */
-        const games = response.data.games;
-        this.teamgames = [];
-        this.teamgames.push(...games);
+
+        //future games
+        const futuregames = response.data.futuregames;
+        this.teamfuturegames = [];
+        this.teamfuturegames.push(...futuregames);
+        //future games
+        const pastgames = response.data.pastgames;
+        this.teampastgames = [];
+        this.teampastgames.push(...pastgames);
 
         /* team information */
         this.teaminfo = []

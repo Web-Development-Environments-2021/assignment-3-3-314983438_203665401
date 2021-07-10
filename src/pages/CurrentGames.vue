@@ -73,7 +73,7 @@ export default {
         const games = response.data;
         this.past_games = [];
         this.past_games.push(...games);
-        console.log(this.past_games);
+        // console.log(this.past_games);
       } catch (error) {
         console.log("error in past Games")
         console.log(error);

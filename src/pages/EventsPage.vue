@@ -28,7 +28,11 @@ export default {
   },
   methods: {
     fillEvents(events){
-      Events = events;
+      console.log("AAAAAAAAAAAAAAAAAAAAAA");
+      console.log(events);
+      this.Events = [];
+      this.Events.push(...events);
+
     }
   }, 
   mounted(){

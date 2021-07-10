@@ -59,6 +59,8 @@ export default {
   border-radius: 10px;
   border-width: 5px;
   border-color:cadetblue;
+  background-color: white;
+
 }
 
 .player-preview .player-title {

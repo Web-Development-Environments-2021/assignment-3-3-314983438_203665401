@@ -39,7 +39,7 @@ export default {
 .team-preview {
   display: inline-block;
   width: 300px;
-  height: 250px;
+  height: 262px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;

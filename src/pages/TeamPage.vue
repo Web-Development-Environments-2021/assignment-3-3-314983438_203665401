@@ -3,7 +3,12 @@
     <!-- <h1 class="title">Search Page</h1>
       <br/>
       Your search Query: {{ searchQuery }} -->
-      Players:<br>
+          <h1 align = "center">
+      {{this.teaminfo.team_name}}<br><br>
+      <img :src= this.teaminfo.team_logo >
+    </h1>
+      <br>
+      <h1 align = "center">Our Players:</h1><br>
       <PlayerPreview
       v-for="p in players"
       :player_id="p.player_id"
@@ -13,19 +18,37 @@
       :src="p.image"
       :team_name="p.team_name" 
       :key="p.name"></PlayerPreview>
+      <br>
+      <h1 align = "center">Our Games:</h1><br>
+          <GamePreview
+      v-for="g in teamgames"
+      :game_id="g.game_id"
+      :date="g.date" 
+      :homeTeamName="g.homeTeamName" 
+      :awayTeamName="g.awayTeamName" 
+      :stadium="g.stadium" 
+      :referee="g.referee"
+      :homeTeamScore="g.homeTeamScore"
+      :awayTeamScore="g.awayTeamScore"
+      :key="g.game_id"></GamePreview>
   </div>
 </template>
 
 <script>
 import PlayerPreview from "../components/PlayerPreview.vue";
+import GamePreview from "../components/GamePreview.vue";
+
 export default {
   name: "PlayerPage",
     components: {
-    PlayerPreview
+    PlayerPreview,
+    GamePreview
   }, 
  data() {
     return {
       players: [],
+      teamgames: [],
+      teaminfo: []
     };
   },
     methods: {
@@ -42,9 +65,23 @@ export default {
         `http://localhost:3000/teams/SearchTeamById/${team_id.data[0].team_id}`,
         //  `http://localhost:3000/teams/SearchTeamById/939`,
         );
-        const players = response.data;
+        console.log("asafafafs");
+        console.log(response);
+
+        /* team players */
+        const players = response.data.team_details;
         this.players = [];
         this.players.push(...players);
+
+        /* team games */
+        const games = response.data.games;
+        this.teamgames = [];
+        this.teamgames.push(...games);
+
+        /* team information */
+        this.teaminfo = []
+        this.teaminfo = team_id.data[0];
+
 
       } catch (error) {
         console.log("error in team players");
